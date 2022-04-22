@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie App</title>
+
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 2%;
+            width: 70%;
+            height: 30vh;
+            margin: auto;
+            
+        }
+        .box{
+            border: 2px solid teal;
+            margin-bottom: 5%;
+        }
+        #name{
+            text-align: center;
+        }
+       
+    </style>
+</head>
+<body>
+     <div id="container">
+
+     </div>
+</body>
+<script>
+    let movieData = [
+        {
+            name: "K.G.F: Chapter 2",
+            releaseDate: "14th April 2022",
+            poster_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwrTaJTUUnI2l9GLlyTavMexAm7tHoVoOQrw&usqp=CAU",
+            IMDB_rating: 9.6,
+        },
+        {
+            name: "Jersey",
+            releaseDate: "22th April 2022",
+            poster_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGulwtV7jY68oNhSnqN9OpSc_2rQc0VBPWYg&usqp=CAU",
+            IMDB_rating: 8.5,
+        },
+        {
+            name: "The Batman",
+            releaseDate: "4th March 2022",
+            poster_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIPXbhuNCiBbknHqE9NHfDVPA2VXqCmYs-MA&usqp=CAU",
+            IMDB_rating: 8.2,
+        },
+        {
+            name: "Spider-Man: No Way Home",
+            releaseDate: "16th December 2021",
+            poster_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs92TmgZDiQepcaBL7mhc87wzlg74n6YyWaw&usqp=CAU",
+            IMDB_rating: 8.4,
+        },
+        {
+            name: "RRR",
+            releaseDate: "24 March 2022",
+            poster_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7ddizi7C14kJeeKmPOyC2vzNoKVL5g-_OXA&usqp=CAU",
+            IMDB_rating: 8.9,
+        },
+        {
+            name: "Breaking Bad",
+            releaseDate: "20 January 2008",
+            poster_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJKUCmCJMuoo6oar_A4BwsqqPtUSyFvKvkng&usqp=CAU",
+            IMDB_rating: 9.5,
+        },
+        {
+            name: "Nightmare Alley",
+            releaseDate: "17 December 2021",
+            poster_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgLyCnfcTUgbxPp6CDQuNcn81FIp6zPSn2EA&usqp=CAU",
+            IMDB_rating: 7.1,
+        },
+        {
+            name: "Avengers: Endgame",
+            releaseDate: "26 April 2019",
+            poster_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtq2AQ-cOYderqIawnxKPjCHXfNGuIFj2_kA&usqp=CAU",
+            IMDB_rating: 8.4,
+        },
+        {
+            name: "Seventeen Power of Love",
+            releaseDate: "20 April 2022",
+            poster_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSloIQwdsP_NbHX7id3yHHSFs7zbGvwK1BHQQ&usqp=CAU",
+            IMDB_rating: 8.6,
+        }
+
+    ];
+
+    let movies = JSON.parse(localStorage.getItem("movies")) || [];
+    
+
+
+    movieData.forEach(function(movie){
+        var box = document.createElement('div');
+        box.setAttribute('class','box');
+
+        var name =document.createElement("p");
+        name.setAttribute('id','name')
+        name.textContent = movie.name;
+
+        var date = document.createElement("p");
+        date.textContent = movie.releaseDate;
+
+        var img = document.createElement("img");
+        img.src = movie.poster_url;
+
+        var rating = document.createElement("p");
+        rating.innerText = movie.IMDB_rating;
+
+       movies.push(movie)
+        localStorage.setItem("movies",JSON.stringify(movies));
+
+        box.append(name, img, date, rating);
+        document.querySelector("#container").append(box)
+    })
+</script>
+</html>
